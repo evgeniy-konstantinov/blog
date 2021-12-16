@@ -1,24 +1,35 @@
-import logo from './logo.svg';
+import React from 'react';
 import './App.css';
-
+import Button from '@mui/material/Button';
+import {
+  AppBar,
+  Container,
+  IconButton,
+  Toolbar,
+  Typography,
+} from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import { Box } from '@mui/system';
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <AppBar position="fixed">
+      <Container fixed>
+        <Toolbar>
+          <IconButton edge="start" color="inherit" aria-label="menu">
+            <MenuIcon />
+          </IconButton>
+          <Typography variant="h6">My blog</Typography>
+          <Box mr={3}>
+            <Button color="inherit" variant="outlined">
+              Log In
+            </Button>
+          </Box>
+          <Button color="secondary" variant="contained">
+            Sing up
+          </Button>
+        </Toolbar>
+      </Container>
+    </AppBar>
   );
 }
 
