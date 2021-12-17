@@ -1,36 +1,31 @@
 import React from 'react';
-import './App.css';
-import Button from '@mui/material/Button';
-import {
-  AppBar,
-  Container,
-  IconButton,
-  Toolbar,
-  Typography,
-} from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import { Box } from '@mui/system';
+import { makeStyles } from '@mui/styles';
+import { Grid } from '@mui/material';
+import Navbar from './components/navbar';
+import LeftBar from './components/leftBar';
+import Main from './components/main';
+import RightBar from './components/rightBar';
+
 function App() {
+  const classes = useStyles();
   return (
-    <AppBar position="fixed">
-      <Container fixed>
-        <Toolbar>
-          <IconButton edge="start" color="inherit" aria-label="menu">
-            <MenuIcon />
-          </IconButton>
-          <Typography variant="h6">My blog</Typography>
-          <Box mr={3}>
-            <Button color="inherit" variant="outlined">
-              Log In
-            </Button>
-          </Box>
-          <Button color="secondary" variant="contained">
-            Sing up
-          </Button>
-        </Toolbar>
-      </Container>
-    </AppBar>
+    <>
+      <Navbar />
+      <Grid container>
+        <Grid item sm={2}>
+          <LeftBar />
+        </Grid>
+        <Grid item sm={7}>
+          <Main />
+        </Grid>
+        <Grid item sm={3}>
+          <RightBar />
+        </Grid>
+      </Grid>
+    </>
   );
 }
+
+const useStyles = makeStyles((theme) => ({}));
 
 export default App;
