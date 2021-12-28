@@ -1,10 +1,11 @@
-import React from 'react';
-import { makeStyles } from '@mui/styles';
-import { Grid } from '@mui/material';
-import Navbar from './components/navbar';
-import LeftBar from './components/leftBar';
-import Main from './components/main';
-import RightBar from './components/rightBar';
+import React from "react";
+
+import { makeStyles } from "@mui/styles";
+import { Grid } from "@mui/material";
+import Navbar from "./components/navbar";
+import LeftBar from "./components/leftBar";
+import Main from "./components/main";
+import RightBar from "./components/rightBar";
 
 function App() {
   const classes = useStyles();
@@ -19,7 +20,7 @@ function App() {
           <Main />
         </Grid>
         <Grid item sm={3}>
-          <RightBar />
+          {/* <RightBar /> */}
         </Grid>
       </Grid>
     </>

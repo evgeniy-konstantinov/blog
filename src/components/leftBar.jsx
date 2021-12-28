@@ -1,6 +1,6 @@
-import { Email, Home, Logout } from '@mui/icons-material';
-import { Container, Typography } from '@mui/material';
-import { makeStyles } from '@mui/styles';
+import { Email, Home, Logout } from "@mui/icons-material";
+import { Container, Typography } from "@mui/material";
+import { makeStyles } from "@mui/styles";
 
 const LeftBar = () => {
   const classes = useStyles();
@@ -17,7 +17,7 @@ const LeftBar = () => {
       </div>
       <div className={classes.item}>
         <Logout className={classes.icon} />
-        <Typography className={classes.text}>Home page</Typography>
+        <Typography className={classes.text}>Log out</Typography>
       </div>
     </Container>
   );
@@ -25,25 +25,25 @@ const LeftBar = () => {
 
 const useStyles = makeStyles((theme) => ({
   container: {
-    backgroundColor: 'white',
-    color: '#555',
-    border: '1px solid #dddcdc',
-    borderLeft: 'none',
+    backgroundColor: "white",
+    color: "#555",
+    border: "1px solid #dddcdc",
+    borderLeft: "none",
     paddingTop: 80,
-    height: '100vh',
+    height: "100vh",
   },
   item: {
-    display: 'flex',
-    alignItems: 'center',
+    display: "flex",
+    alignItems: "center",
     marginBottom: 30,
-    cursor: 'pointer',
+    cursor: "pointer",
   },
   text: {
-    fontWeight: 'bold',
+    fontWeight: "bold",
   },
   icon: {
-    marginRight: '10px',
-    fontSize: '18px',
+    marginRight: "10px",
+    fontSize: "18px",
   },
 }));
 

@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
-import Button from '@mui/material/Button';
+import React, { useState } from "react";
+
+import Button from "@mui/material/Button";
 import {
   AppBar,
   Avatar,
@@ -13,22 +14,29 @@ import {
   TextField,
   Toolbar,
   Typography,
-} from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import { Box } from '@mui/system';
-import { Person } from '@mui/icons-material';
-import { makeStyles } from '@mui/styles';
+} from "@mui/material";
+import MenuIcon from "@mui/icons-material/Menu";
+import { Box } from "@mui/system";
+import { Person } from "@mui/icons-material";
+import { makeStyles } from "@mui/styles";
+import { useDispatch } from "react-redux";
+import {
+  userEmailSingUpDataAction,
+  userPasswordSingUpDataAction,
+} from "../redux/actions";
 
 const Navbar = () => {
+  const dispatch = useDispatch();
   const classes = useStyles();
   const [open, setOpen] = useState(false);
 
-  const handleOpenRegisration = () => {
-    setOpen(true);
-  };
+  function handleClose() {
+    setOpen((prev) => !prev);
+  }
 
-  const handleClose = () => {
-    setOpen(false);
+  const setUserData = (e) => {
+    dispatch(userEmailSingUpDataAction(e.target.value));
+    dispatch(userPasswordSingUpDataAction(e.target.value));
   };
 
   return (
@@ -47,12 +55,7 @@ const Navbar = () => {
             My blog
           </Typography>
           <Box mr={3}>
-            <Button
-              color="inherit"
-              variant="outlined"
-              startIcon={<Person />}
-              onClick={handleOpenRegisration}
-            >
+            <Button color="inherit" variant="outlined" startIcon={<Person />}>
               Log In
             </Button>
 
@@ -74,9 +77,10 @@ const Navbar = () => {
                 ></TextField>
                 <TextField
                   margin="dense"
-                  id="name"
+                  id="email"
                   label="Email adress"
                   type="email"
+                  onChange={setUserData}
                   fullWidth
                 ></TextField>
                 <TextField
@@ -84,6 +88,7 @@ const Navbar = () => {
                   id="pass"
                   label="Password"
                   type="password"
+                  onChange={setUserData}
                   fullWidth
                 ></TextField>
               </DialogContent>
@@ -91,20 +96,16 @@ const Navbar = () => {
                 <Button onClick={handleClose} color="primary">
                   Cancel
                 </Button>
-                <Button onClick={handleClose} color="primary">
-                  Log in
+                <Button color="primary" onClick={setUserData}>
+                  Sing up
                 </Button>
               </DialogActions>
             </Dialog>
           </Box>
-          <Button color="secondary" variant="contained">
+          <Button onClick={handleClose} color="secondary" variant="contained">
             Sing up
           </Button>
-          <Avatar
-            alt="Remy Sharp"
-            src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/Sharp_Smile.jpg/1200px-Sharp_Smile.jpg"
-            className={classes.avatar}
-          />
+          <Avatar alt="Remy Sharp" className={classes.avatar} />
         </Toolbar>
       </Container>
     </AppBar>
@@ -116,13 +117,13 @@ const useStyles = makeStyles({
     flexGrow: 1,
   },
   menuButton: {
-    marginRight: '10px',
+    marginRight: "10px",
   },
   title: {
     flexGrow: 1,
   },
   avatar: {
-    marginLeft: '20px',
+    marginLeft: "20px",
   },
 });
 
