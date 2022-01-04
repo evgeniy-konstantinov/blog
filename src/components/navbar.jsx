@@ -29,14 +29,17 @@ const Navbar = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const [open, setOpen] = useState(false);
+  const [userEmail, setUserEmail] = useState("");
+  const [userPassword, setUserPassword] = useState("");
 
   function handleClose() {
     setOpen((prev) => !prev);
   }
 
-  const setUserData = (e) => {
-    dispatch(userEmailSingUpDataAction(e.target.value));
-    dispatch(userPasswordSingUpDataAction(e.target.value));
+  const setUserData = () => {
+    // dispatch(userEmailSingUpDataAction(e.target.value));
+    // dispatch(userPasswordSingUpDataAction(e.target.value));
+    console.log(userEmail, userPassword);
   };
 
   return (
@@ -64,9 +67,9 @@ const Navbar = () => {
               onClose={handleClose}
               aria-labelledby="form-dialog-title"
             >
-              <DialogTitle id="form-dialog-title">Log in</DialogTitle>
+              <DialogTitle id="form-dialog-title">Sing up</DialogTitle>
               <DialogContent>
-                <DialogContentText>Log in to more function</DialogContentText>
+                <DialogContentText>Sing up to more function</DialogContentText>
                 <TextField
                   autoFocus
                   margin="dense"
@@ -80,7 +83,7 @@ const Navbar = () => {
                   id="email"
                   label="Email adress"
                   type="email"
-                  onChange={setUserData}
+                  onChange={(e) => setUserEmail(e.target.value)}
                   fullWidth
                 ></TextField>
                 <TextField
@@ -88,7 +91,7 @@ const Navbar = () => {
                   id="pass"
                   label="Password"
                   type="password"
-                  onChange={setUserData}
+                  onChange={(e) => setUserPassword(e.target.value)}
                   fullWidth
                 ></TextField>
               </DialogContent>
