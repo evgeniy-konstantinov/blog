@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from 'react';
 
-import Button from "@mui/material/Button";
+import { USER_SING_UP_DATA } from '../redux/actions';
+import Button from '@mui/material/Button';
 import {
   AppBar,
   Avatar,
@@ -14,32 +15,35 @@ import {
   TextField,
   Toolbar,
   Typography,
-} from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
-import { Box } from "@mui/system";
-import { Person } from "@mui/icons-material";
-import { makeStyles } from "@mui/styles";
-import { useDispatch } from "react-redux";
-import {
-  userEmailSingUpDataAction,
-  userPasswordSingUpDataAction,
-} from "../redux/actions";
+} from '@mui/material';
+import MenuIcon from '@mui/icons-material/Menu';
+import { Box } from '@mui/system';
+import { Person } from '@mui/icons-material';
+import { makeStyles } from '@mui/styles';
+import { useDispatch } from 'react-redux';
+import { userSingUpDataAction } from '../redux/actions';
 
 const Navbar = () => {
   const dispatch = useDispatch();
   const classes = useStyles();
   const [open, setOpen] = useState(false);
-  const [userEmail, setUserEmail] = useState("");
-  const [userPassword, setUserPassword] = useState("");
+  const [userValue, setUserValue] = useState({ email: '', password: '' });
 
   function handleClose() {
     setOpen((prev) => !prev);
   }
-
+  const onChange = useCallback(
+    ({ target }) => {
+      setUserValue((userValue) => ({
+        ...userValue,
+        [target.name]: target.value,
+      }));
+    },
+    [setUserValue]
+  );
   const setUserData = () => {
-    // dispatch(userEmailSingUpDataAction(e.target.value));
-    // dispatch(userPasswordSingUpDataAction(e.target.value));
-    console.log(userEmail, userPassword);
+    // dispatch({ type: USER_SING_UP_DATA });
+    console.log(userValue);
   };
 
   return (
@@ -70,20 +74,22 @@ const Navbar = () => {
               <DialogTitle id="form-dialog-title">Sing up</DialogTitle>
               <DialogContent>
                 <DialogContentText>Sing up to more function</DialogContentText>
-                <TextField
-                  autoFocus
+                {/* <TextField
+                  
                   margin="dense"
                   id="name"
                   label="Name"
                   type="text"
                   fullWidth
-                ></TextField>
+                ></TextField> */}
                 <TextField
+                  autoFocus
                   margin="dense"
                   id="email"
                   label="Email adress"
                   type="email"
-                  onChange={(e) => setUserEmail(e.target.value)}
+                  // onChange={(e) => setUserValue({ email: e.target.value })}
+                  onChange={onChange}
                   fullWidth
                 ></TextField>
                 <TextField
@@ -91,7 +97,10 @@ const Navbar = () => {
                   id="pass"
                   label="Password"
                   type="password"
-                  onChange={(e) => setUserPassword(e.target.value)}
+                  // onChange={(e) =>
+                  //   setUserValue({ ...userValue, password: e.target.value })
+                  // }
+                  onChange={onChange}
                   fullWidth
                 ></TextField>
               </DialogContent>
@@ -120,13 +129,13 @@ const useStyles = makeStyles({
     flexGrow: 1,
   },
   menuButton: {
-    marginRight: "10px",
+    marginRight: '10px',
   },
   title: {
     flexGrow: 1,
   },
   avatar: {
-    marginLeft: "20px",
+    marginLeft: '20px',
   },
 });
 
