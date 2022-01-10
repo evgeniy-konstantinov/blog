@@ -1,14 +1,13 @@
-import React from "react";
+import React from 'react';
 
-import { makeStyles } from "@mui/styles";
-import { Grid } from "@mui/material";
-import Navbar from "./components/navbar";
-import LeftBar from "./components/leftBar";
-import Main from "./components/main";
-import RightBar from "./components/rightBar";
+// import { makeStyles } from '@mui/styles';
+import { Grid } from '@mui/material';
+import Navbar from './components/navbar';
+import LeftBar from './components/leftBar';
+import Main from './components/main';
 
 function App() {
-  const classes = useStyles();
+  // const classes = useStyles();
   return (
     <>
       <Navbar />
@@ -27,6 +26,6 @@ function App() {
   );
 }
 
-const useStyles = makeStyles((theme) => ({}));
+// const useStyles = makeStyles((theme) => ({}));
 
 export default App;

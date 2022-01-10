@@ -1,6 +1,5 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState } from 'react';
 
-import { USER_SING_UP_DATA } from '../redux/actions';
 import Button from '@mui/material/Button';
 import {
   AppBar,
@@ -11,12 +10,11 @@ import {
   DialogContent,
   DialogContentText,
   DialogTitle,
-  IconButton,
   TextField,
   Toolbar,
   Typography,
 } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
+
 import { Box } from '@mui/system';
 import { Person } from '@mui/icons-material';
 import { makeStyles } from '@mui/styles';
@@ -32,17 +30,17 @@ const Navbar = () => {
   function handleClose() {
     setOpen((prev) => !prev);
   }
-  const onChange = useCallback(
-    ({ target }) => {
-      setUserValue((userValue) => ({
-        ...userValue,
-        [target.name]: target.value,
-      }));
-    },
-    [setUserValue]
-  );
+  // const onChange = useCallback(
+  //   ({ target }) => {
+  //     setUserValue((userValue) => ({
+  //       ...userValue,
+  //       [target.name]: target.value,
+  //     }));
+  //   },
+  //   [setUserValue]
+  // );
   const setUserData = () => {
-    // dispatch({ type: USER_SING_UP_DATA });
+    dispatch(userSingUpDataAction(userValue));
     console.log(userValue);
   };
 
@@ -88,8 +86,7 @@ const Navbar = () => {
                   id="email"
                   label="Email adress"
                   type="email"
-                  // onChange={(e) => setUserValue({ email: e.target.value })}
-                  onChange={onChange}
+                  onChange={(e) => setUserValue({ email: e.target.value })}
                   fullWidth
                 ></TextField>
                 <TextField
@@ -97,10 +94,9 @@ const Navbar = () => {
                   id="pass"
                   label="Password"
                   type="password"
-                  // onChange={(e) =>
-                  //   setUserValue({ ...userValue, password: e.target.value })
-                  // }
-                  onChange={onChange}
+                  onChange={(e) =>
+                    setUserValue({ ...userValue, password: e.target.value })
+                  }
                   fullWidth
                 ></TextField>
               </DialogContent>
@@ -140,3 +136,10 @@ const useStyles = makeStyles({
 });
 
 export default Navbar;
+
+// ({ target }) => {
+//   setUserValue((userValue) => ({
+//     ...userValue,
+//     [target.name]: target.value,
+//   }));
+// };
